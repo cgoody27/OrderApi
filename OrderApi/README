@@ -1,0 +1,22 @@
+## Notes
+This project is currently set up to return only an order with "1" as the OrderId.
+This project is set up for Entity Framework, but does not actually hit a database right now. The code for 
+	hitting the db is commented out in favor of hard coded returned values. 
+
+## Running
+Setup is easy, press F5.
+
+The service will start up and you can test endpoints using Postman
+http://localhost:5117/orders/1/
+http://localhost:5117/orders/1/history
+
+You can see that the port is 5117 and it's using http. When an appication tries to hit the endpoint, it 
+	will use https://localhost:7161 for a secure http experience. Currently, the only site CORS is allowing is 
+	http://localhost:4200... the order-ui project in the same github repo. 
+
+## Extra Notes
+The project is set up using folders to separate code
+	I have seen other projects where the Services (folder in the this case) is broken out as a separate project. I'm not 
+	sure if I'm a fan of that yet. Creates a whole 'nother deployable that is not necessary if we're going for microservices. 
+The DTOs and Mappings folders are included, in a larger project I would expect there to be some use for these.
+	* These should probably be deleted because they are YAGNI
