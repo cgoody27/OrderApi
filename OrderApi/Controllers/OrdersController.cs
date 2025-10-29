@@ -19,9 +19,15 @@ public class OrdersController : ControllerBase
     [HttpGet("{orderId}")]
     public async Task<IActionResult> GetOrderSummary(string orderId)
     {
+        if (orderId == null)
+        {
+            _logger.LogError("Order Id is required.");
+            return NotFound();
+        }
         try
         {
             var orderSummary = await _orderService.GetOrderSummaryAsync(orderId);
+            
             if (orderSummary == null)
                 return NotFound();
 
@@ -39,9 +45,15 @@ public class OrdersController : ControllerBase
     [HttpGet("{orderId}/history")]
     public async Task<IActionResult> GetOrderStatusHistory(string orderId)
     {
+        if (orderId == null)
+        {
+            _logger.LogError("Order Id is required.");
+            return NotFound();
+        }
         try
         {
             var orderStatusHistory = await _orderService.GetOrderStatusHistoryAsync(orderId);
+            
             if (orderStatusHistory == null)
                 return NotFound();
 
